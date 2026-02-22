@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - TicTacBoom</title>
+    <!-- Premium Font (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* === CSS VARIABLES === */
+        :root {
+            --bg-main: #0a0c10;       /* Deep elegant dark */
+            --bg-card: #12151c;       /* Slightly lighter for content */
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8; /* Soft slate grey for reading */
+            --accent-blue: #3b7df8;   /* Player X color */
+            --accent-red: #f83b54;    /* Player O color */
+            --border-color: #1e2430;
+        }
+
+        /* === RESET & BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* === NAVBAR === */
+        nav {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            background: rgba(10, 12, 16, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent-blue);
+        }
+
+        .back-btn {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .back-btn:hover {
+            color: var(--text-primary);
+        }
+
+        /* === MAIN CONTENT CONTAINER === */
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 24px;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Header Section */
+        .page-header {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        /* === PREMIUM X & O ANIMATION === */
+        .xo-animation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .anim-x {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            line-height: 1;
+            /* Smooth continuous rotation */
+            animation: spinX 10s linear infinite;
+            text-shadow: 0 0 15px rgba(59, 125, 248, 0.3);
+        }
+
+        .anim-o {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--accent-red);
+            line-height: 1;
+            /* Smooth scaling/breathing effect */
+            animation: pulseO 3s ease-in-out infinite;
+            text-shadow: 0 0 15px rgba(248, 59, 84, 0.3);
+        }
+
+        @keyframes spinX {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulseO {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 1; }
+        }
+
+        .page-header h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        /* Content Card */
+        .content-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px 48px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Typography inside Content */
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        /* === FOOTER === */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .content-card {
+                padding: 30px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">TicTac<span>Boom</span></a>
+        <a href="index.html" class="back-btn">
+            ← Back to Home
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="page-header">
+            
+            <!-- Animated X and O Header -->
+            <div class="xo-animation">
+                <div class="anim-x">X</div>
+                <div class="anim-o">O</div>
+            </div>
+
+            <h1>Terms of Service</h1>
+            <p>Effective Date: February 22, 2026</p>
+        </div>
+
+        <div class="content-card">
+            <h2>1. Agreement to Terms</h2>
+            <p>By downloading, installing, or using the <strong>TicTacBoom</strong> mobile application ("App"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the App.</p>
+
+            <h2>2. License to Use</h2>
+            <p>TicTacBoom grants you a personal, non-exclusive, non-transferable, and revocable license to use the App for your personal, non-commercial entertainment purposes. You may not:</p>
+            <ul>
+                <li>Modify, reverse engineer, or decompile the App.</li>
+                <li>Distribute, sell, or lease the App to any third party.</li>
+                <li>Use the App in any unlawful manner.</li>
+            </ul>
+
+            <h2>3. Updates and Modifications</h2>
+            <p>We are constantly improving TicTacBoom. We may update the App to add new features, fix bugs, or improve performance. We reserve the right to modify or discontinue the App (or any part of it) at any time without notice. Updates may be provided directly via an in-app prompt.</p>
+
+            <h2>4. Intellectual Property</h2>
+            <p>All content within TicTacBoom, including but not limited to designs, logos, graphics, sounds, and source code, are the intellectual property of TicTacBoom Studio. You may not use our intellectual property without our prior written consent.</p>
+
+            <h2>5. Disclaimer of Warranties</h2>
+            <p>The App is provided on an <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong> basis. We make no warranties, expressed or implied, regarding the App's reliability, accuracy, or compatibility with your device. TicTacBoom does not guarantee that the App will be free of errors or uninterrupted.</p>
+
+            <h2>6. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by law, TicTacBoom Studio shall not be liable for any indirect, incidental, or consequential damages (including device damage or data loss) arising out of your use or inability to use the App.</p>
+
+            <h2>7. Governing Law</h2>
+            <p>These terms shall be governed and construed in accordance with the laws of India, without regard to its conflict of law provisions.</p>
+
+            <h2>8. Contact Information</h2>
+            <p>If you have any questions about these Terms, please contact us at: <br>
+            <a href="mailto:all4you598@gmail.com">all4you598@gmail.com</a></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 TicTacBoom Studio. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
