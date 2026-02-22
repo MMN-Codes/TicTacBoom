@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - TicTacBoom</title>
+    <!-- Premium Font (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* === CSS VARIABLES === */
+        :root {
+            --bg-main: #0a0c10;       /* Deep elegant dark */
+            --bg-card: #12151c;       /* Slightly lighter for content */
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8; /* Soft slate grey for reading */
+            --accent: #3b7df8;        /* Your app's signature blue */
+            --border-color: #1e2430;
+        }
+
+        /* === RESET & BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* === NAVBAR === */
+        nav {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            background: rgba(10, 12, 16, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .back-btn {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .back-btn:hover {
+            color: var(--text-primary);
+        }
+
+        /* === MAIN CONTENT CONTAINER === */
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 24px;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Header Section */
+        .page-header {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        /* Content Card */
+        .content-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px 48px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Typography inside Content */
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        /* === FOOTER === */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .content-card {
+                padding: 30px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">TicTac<span>Boom</span></a>
+        <a href="index.html" class="back-btn">
+            ← Back to Home
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="page-header">
+            <h1>Privacy Policy</h1>
+            <p>Last Updated: February 2026</p>
+        </div>
+
+        <div class="content-card">
+            <h2>1. Introduction</h2>
+            <p>Welcome to TicTacBoom. We respect your privacy and are committed to protecting it. This Privacy Policy explains how we handle your data when you use our mobile application. We believe in absolute transparency: <strong>our game is designed to be completely private.</strong></p>
+
+            <h2>2. Information We Collect</h2>
+            <p>TicTacBoom is a standalone local multiplayer and AI-based game. <strong>We do not collect, store, or transmit any personal data.</strong></p>
+            <ul>
+                <li>No account registration is required.</li>
+                <li>No background tracking or analytics.</li>
+                <li>Your player names and game scores are stored locally on your device and are never sent to our servers.</li>
+            </ul>
+
+            <h2>3. Device Permissions</h2>
+            <p>To provide you with the best gameplay experience, TicTacBoom requests minimal device permissions:</p>
+            <ul>
+                <li><strong>Vibration / Haptic Feedback:</strong> Used solely to enhance gameplay feel (e.g., when placing an X or O, or winning a match). You can toggle this off in the app settings.</li>
+                <li><strong>Internet Access:</strong> Used exclusively to check for the latest app updates to ensure you have the most secure and feature-rich version.</li>
+            </ul>
+
+            <h2>4. Third-Party Services</h2>
+            <p>Currently, TicTacBoom operates without third-party advertisements or trackers. Your gameplay remains 100% uninterrupted and private. If this changes in the future, we will update this policy and notify users accordingly.</p>
+
+            <h2>5. Data Security</h2>
+            <p>Because we do not collect your personal information, there is no risk of your data being breached from our end. All preferences and scores remain safely encrypted within your device's local storage.</p>
+
+            <h2>6. Changes to This Policy</h2>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date at the top.</p>
+
+            <h2>7. Contact Us</h2>
+            <p>If you have any questions, suggestions, or concerns regarding this Privacy Policy, please feel free to reach out to us at: <br>
+            <a href="mailto:all4you598@gmail.com">all4you598@gmail.com</a></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 TicTacBoom Studio. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
