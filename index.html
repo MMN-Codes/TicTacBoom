@@ -1,355 +1,389 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ================= SEO & META TAGS ================= -->
+    <title>TicTacBoom - Premium Strategy Mobile Game | No Ads</title>
+    <meta name="description" content="Download TicTacBoom, the ultimate evolution of Tic Tac Toe. Play Infinity Mode, Blind Mode, and Blitz Mode. Experience smart AI, haptic feedback, and zero ads!">
+    <meta name="keywords" content="Tic Tac Toe, puzzle game, strategy game, no ads game, android game, offline game, brain training, TicTacBoom">
+    <meta name="author" content="MMN Codes">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph (For Facebook, WhatsApp, LinkedIn sharing) -->
+    <meta property="og:title" content="TicTacBoom - Strategy Reimagined">
+    <meta property="og:description" content="Experience the classic game with premium haptics, smart AI, and a stunning dark interface. Zero Ads.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-github-url.github.io/TicTacBoom-Web/"> <!-- UPDATE THIS -->
+    
+    <!-- Google Schema Markup (Crucial for App SEO Ranking) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "TicTacBoom",
+      "operatingSystem": "ANDROID",
+      "applicationCategory": "GameApplication",
+      "genre": "Strategy, Puzzle",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Premium Tic Tac Toe evolution with Infinity Mode, Blind Mode, and Zero Ads.",
+      "author": {
+        "@type": "Organization",
+        "name": "MMN Codes"
+      }
+    }
+    </script>
+    <!-- =================================================== -->
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Premium Fonts: Outfit (Headings) + Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === CSS VARIABLES === */
+        :root {
+            --bg-base: #030712;       /* Deepest Space Black */
+            --bg-card: rgba(17, 24, 39, 0.6);
+            --text-main: #F9FAFB;
+            --text-muted: #9CA3AF;
+            --accent-blue: #3b7df8;   /* X Neon */
+            --accent-blue-glow: rgba(59, 125, 248, 0.5);
+            --accent-red: #f83b54;    /* O Neon */
+            --border-glass: rgba(255, 255, 255, 0.08);
+        }
 
-<title>TicTacBoom – Modern Strategy Tic Tac Toe Game</title>
+        /* === RESET === */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(59, 125, 248, 0.05), transparent 25vw),
+                radial-gradient(circle at 85% 30%, rgba(248, 59, 84, 0.05), transparent 25vw);
+        }
 
-<meta name="description" content="Play TicTacBoom – the ultimate evolution of Tic Tac Toe. Infinity mode, Blitz mode, Blind mode, smart AI, premium design, and zero ads.">
-<meta name="keywords" content="tic tac toe game, strategy game, tic tac boom, android puzzle game, offline tic tac toe">
-<meta name="author" content="MMN Codes">
+        h1, h2, h3, .logo { font-family: 'Outfit', sans-serif; }
 
-<meta property="og:title" content="TicTacBoom – Strategy Reimagined">
-<meta property="og:description" content="A premium evolution of Tic Tac Toe with Infinity mode, Blitz mode, Blind mode and smart AI.">
-<meta property="og:type" content="website">
+        /* === FLOATING BACKGROUND (Depth of Field Effect) === */
+        .bg-particles { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; overflow: hidden; }
+        .particle { position: absolute; font-weight: 900; font-family: 'Outfit'; opacity: 0; animation: floatUp linear infinite; }
+        .p-x { color: var(--accent-blue); filter: drop-shadow(0 0 15px var(--accent-blue)); }
+        .p-o { color: var(--accent-red); filter: drop-shadow(0 0 15px var(--accent-red)); }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg) scale(0.8); opacity: 0; }
+            10% { opacity: 0.15; }
+            90% { opacity: 0.15; }
+            100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
 
-<style>
+        /* === NAVBAR === */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 20px 8%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(3, 7, 18, 0.7);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .logo { font-size: 26px; font-weight: 900; letter-spacing: -1px; background: linear-gradient(90deg, #fff, #9CA3AF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none;}
+        
+        .nav-links { display: flex; align-items: center; gap: 30px; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--text-main); }
+        .nav-btn { background: rgba(255,255,255,0.1); padding: 8px 20px; border-radius: 100px; color: #fff !important; border: 1px solid var(--border-glass); transition: 0.3s; }
+        .nav-btn:hover { background: #fff; color: #000 !important; }
 
-:root{
---bg:#050505;
---card:#0f0f12;
---accent:#3b7df8;
---accent2:#f83b54;
---text:#ffffff;
---muted:#94a3b8;
-}
+        /* === HERO SECTION === */
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 150px 20px 80px; position: relative;
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Inter,sans-serif;
-scroll-behavior:smooth;
-}
+        .badge {
+            background: rgba(59, 125, 248, 0.1); color: var(--accent-blue);
+            padding: 8px 20px; border-radius: 100px; font-size: 13px; font-weight: 600;
+            border: 1px solid rgba(59, 125, 248, 0.3); margin-bottom: 30px;
+            display: inline-flex; align-items: center; gap: 8px;
+        }
 
-body{
-background:var(--bg);
-color:var(--text);
-overflow-x:hidden;
-}
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 84px); line-height: 1.05; letter-spacing: -2px; margin-bottom: 24px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #9CA3AF 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
 
-section{
-padding:100px 8%;
-}
+        .hero p { font-size: 18px; color: var(--text-muted); max-width: 600px; margin-bottom: 40px; line-height: 1.7; }
 
-nav{
-position:fixed;
-top:0;
-width:100%;
-padding:20px 8%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:rgba(5,5,5,0.85);
-backdrop-filter:blur(15px);
-border-bottom:1px solid rgba(255,255,255,0.05);
-z-index:999;
-}
+        /* Premium Download Button with Sweep Animation */
+        .btn-download {
+            position: relative; overflow: hidden;
+            background: var(--accent-blue); color: white;
+            padding: 20px 50px; border-radius: 100px; font-weight: 600; font-size: 18px;
+            text-decoration: none; display: inline-flex; align-items: center; gap: 12px;
+            transition: all 0.3s ease; box-shadow: 0 10px 30px var(--accent-blue-glow);
+        }
 
-.logo{
-font-size:22px;
-font-weight:800;
-}
+        .btn-download::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: sweep 3s infinite;
+        }
 
-.nav a{
-margin-left:25px;
-text-decoration:none;
-color:var(--muted);
-font-size:14px;
-}
+        @keyframes sweep { 0% { left: -100%; } 50%, 100% { left: 200%; } }
+        
+        .btn-download:hover { transform: translateY(-3px); background: #2563eb; box-shadow: 0 15px 40px rgba(59, 125, 248, 0.6); }
 
-.nav a:hover{
-color:white;
-}
+        /* === PREMIUM PHONE MOCKUP === */
+        .phone-container { margin-top: 80px; position: relative; perspective: 1000px; }
+        .phone-mockup {
+            width: 300px; height: 600px; background: #000;
+            border: 12px solid #1f2937; border-radius: 48px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 100px rgba(59, 125, 248, 0.15);
+            overflow: hidden; position: relative;
+            transform: rotateX(10deg) translateY(0px); animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Glare effect on screen */
+        .phone-mockup::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(to bottom right, rgba(255,255,255,0.1) 0%, transparent 40%, transparent 100%);
+            pointer-events: none; transform: rotate(-30deg);
+        }
 
-.hero{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding-top:120px;
-}
+        .screen {
+            width: 100%; height: 100%; background: radial-gradient(circle at top, #111827, #000);
+            display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px;
+        }
 
-.hero h1{
-font-size:clamp(40px,7vw,80px);
-font-weight:800;
-background:linear-gradient(90deg,#fff,#94a3b8);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
+        .screen-title { font-family: 'Outfit'; font-size: 28px; font-weight: 800; margin-bottom: 40px; }
+        .screen-title span.b { color: var(--accent-blue); } .screen-title span.r { color: var(--accent-red); }
 
-.hero p{
-margin-top:20px;
-max-width:650px;
-color:var(--muted);
-font-size:18px;
-line-height:1.6;
-}
+        .grid-preview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 100%; max-width: 240px; }
+        .cell { aspect-ratio: 1; background: rgba(255,255,255,0.05); border-radius: 16px; display: flex; justify-content: center; align-items: center; font-family: 'Outfit'; font-weight: 900; font-size: 40px; }
+        .cell.x { color: var(--accent-blue); text-shadow: 0 0 15px var(--accent-blue); box-shadow: inset 0 0 20px rgba(59, 125, 248, 0.2); border: 1px solid rgba(59, 125, 248, 0.3); }
+        .cell.o { color: var(--accent-red); text-shadow: 0 0 15px var(--accent-red); box-shadow: inset 0 0 20px rgba(248, 59, 84, 0.2); border: 1px solid rgba(248, 59, 84, 0.3);}
 
-.download-btn{
-margin-top:40px;
-background:var(--accent);
-padding:18px 45px;
-border-radius:50px;
-color:white;
-text-decoration:none;
-font-weight:600;
-display:inline-block;
-box-shadow:0 0 25px rgba(59,125,248,0.4);
-transition:0.3s;
-}
+        @keyframes float { 0%, 100% { transform: rotateX(10deg) translateY(0px); } 50% { transform: rotateX(10deg) translateY(-20px); } }
 
-.download-btn:hover{
-transform:translateY(-4px);
-box-shadow:0 0 45px rgba(59,125,248,0.6);
-}
+        /* === FEATURES SECTION (With 3D Hover Cards) === */
+        .features { padding: 120px 8%; max-width: 1400px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 42px; margin-bottom: 60px; }
+        
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
+        .feature-card {
+            background: var(--bg-card); border: 1px solid var(--border-glass);
+            padding: 40px; border-radius: 24px; backdrop-filter: blur(10px);
+            transition: transform 0.1s ease, border-color 0.4s;
+            transform-style: preserve-3d; /* For JS 3D Effect */
+        }
+        
+        .feature-card:hover { border-color: rgba(59, 125, 248, 0.5); }
+        
+        .icon-wrap {
+            width: 64px; height: 64px; background: rgba(255,255,255,0.05); border-radius: 16px;
+            display: flex; justify-content: center; align-items: center; margin-bottom: 24px;
+            border: 1px solid var(--border-glass);
+        }
+        .icon-wrap svg { width: 32px; height: 32px; stroke: var(--accent-blue); }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:30px;
-}
+        .feature-card h3 { font-size: 22px; margin-bottom: 12px; }
+        .feature-card p { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
 
-.card{
-background:var(--card);
-padding:40px;
-border-radius:20px;
-border:1px solid rgba(255,255,255,0.05);
-transition:0.35s;
-}
+        /* === FOOTER === */
+        footer { padding: 60px 8%; border-top: 1px solid var(--border-glass); display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .footer-nav { display: flex; gap: 30px; }
+        .footer-nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: 0.3s; }
+        .footer-nav a:hover { color: var(--text-main); }
+        .copyright { color: #4B5563; font-size: 14px; }
 
-.card:hover{
-transform:translateY(-10px);
-border-color:var(--accent);
-}
+        /* === UTILITY (Scroll Reveal) === */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-.card h3{
-margin-bottom:10px;
-}
-
-.card p{
-color:var(--muted);
-font-size:15px;
-line-height:1.6;
-}
-
-.modes{
-background:#020202;
-}
-
-.mode{
-background:linear-gradient(145deg,#0f0f12,#050505);
-padding:35px;
-border-radius:18px;
-border:1px solid rgba(255,255,255,0.06);
-transition:0.4s;
-}
-
-.mode:hover{
-transform:scale(1.05);
-border-color:var(--accent);
-}
-
-.mode h3{
-margin-bottom:10px;
-}
-
-.download-section{
-text-align:center;
-}
-
-footer{
-padding:60px 20px;
-text-align:center;
-border-top:1px solid rgba(255,255,255,0.06);
-background:#020202;
-}
-
-footer a{
-color:var(--muted);
-margin:0 12px;
-text-decoration:none;
-font-size:14px;
-}
-
-footer a:hover{
-color:white;
-}
-
-.bg-shape{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-1;
-overflow:hidden;
-}
-
-.shape{
-position:absolute;
-font-size:120px;
-opacity:0.08;
-animation:float 25s linear infinite;
-}
-
-@keyframes float{
-0%{transform:translateY(110vh) rotate(0deg)}
-100%{transform:translateY(-20vh) rotate(360deg)}
-}
-
-.s1{left:10%}
-.s2{left:70%;animation-duration:30s}
-.s3{left:40%;animation-duration:22s}
-
-@media(max-width:768px){
-.nav{display:none}
-.hero h1{font-size:42px}
-}
-
-</style>
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .nav-links a.hide-mob { display: none; }
+            .hero h1 { font-size: 40px; }
+            .phone-mockup { width: 260px; height: 520px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="bg-shape">
-<div class="shape s1">X</div>
-<div class="shape s2">O</div>
-<div class="shape s3">X</div>
-</div>
+    <!-- Background Particle Engine -->
+    <div class="bg-particles" id="particles">
+        <!-- JS will populate this to avoid HTML clutter -->
+    </div>
 
-<nav>
-<div class="logo">TicTacBoom</div>
-<div class="nav">
-<a href="#features">Features</a>
-<a href="#modes">Modes</a>
-<a href="#download">Download</a>
-</div>
-</nav>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">TicTacBoom</a>
+        <div class="nav-links">
+            <a href="#features" class="hide-mob">Features</a>
+            <a href="privacy.html" class="hide-mob">Privacy</a>
+            <a href="#" class="nav-btn">Download APK</a>
+        </div>
+    </nav>
 
-<section class="hero">
+    <!-- Hero Section -->
+    <main>
+        <section class="hero">
+            <div class="badge reveal">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                100% Free & Zero Ads
+            </div>
+            <h1 class="reveal">Strategy<br>Reimagined.</h1>
+            <p class="reveal">Experience the classic game completely rebuilt. Featuring Infinity Mode, Blind Memory Mode, Advanced AI, and competitive Player Ranks.</p>
+            
+            <a href="URL_KA_LINK_YAHAN_DAALEIN" class="btn-download reveal">
+                Download Latest APK
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            </a>
 
-<h1>Strategy Reimagined</h1>
+            <!-- CSS Phone Mockup -->
+            <div class="phone-container reveal">
+                <div class="phone-mockup">
+                    <div class="screen">
+                        <div class="screen-title"><span class="b">X</span> vs <span class="r">O</span></div>
+                        <div class="grid-preview">
+                            <div class="cell x">X</div><div class="cell"></div><div class="cell o">O</div>
+                            <div class="cell o">O</div><div class="cell x">X</div><div class="cell"></div>
+                            <div class="cell"></div><div class="cell"></div><div class="cell x">X</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<p>
-TicTacBoom is a modern evolution of the classic Tic Tac Toe strategy game. 
-Experience fast gameplay, smart AI opponents, unique game modes and a premium ad-free interface.
-</p>
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <h2 class="section-title reveal">Unmatched Gameplay</h2>
+            <div class="features-grid">
+                
+                <div class="feature-card tilt-card reveal">
+                    <div class="icon-wrap">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    </div>
+                    <h3>Infinity (Boom) Mode</h3>
+                    <p>Forget draws. You can only keep 3 moves on the board. Make your 4th move, and your oldest piece explodes.</p>
+                </div>
 
-<a class="download-btn" href="#">
-Download for Android
-</a>
+                <div class="feature-card tilt-card reveal">
+                    <div class="icon-wrap">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </div>
+                    <h3>Ghost / Blind Mode</h3>
+                    <p>Pieces disappear 1 second after you place them. Test your memory and outsmart your opponent blindly.</p>
+                </div>
 
-</section>
+                <div class="feature-card tilt-card reveal">
+                    <div class="icon-wrap">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    </div>
+                    <h3>Career & Ranks</h3>
+                    <p>Win matches, earn XP, and climb the leaderboard. From Bronze beginner to Elite Grandmaster status.</p>
+                </div>
 
-<section id="features">
+            </div>
+        </section>
+    </main>
 
-<div class="grid">
+    <!-- Footer -->
+    <footer>
+        <div class="footer-nav">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <p class="copyright">&copy; <span id="year"></span> MMN Studio. All Rights Reserved.</p>
+    </footer>
 
-<div class="card">
-<h3>Smart Adaptive AI</h3>
-<p>
-Challenge an AI that adapts to your strategy. Play from beginner friendly difficulty all the way to impossible mode.
-</p>
-</div>
+    <!-- ================= JAVASCRIPT (The Magic) ================= -->
+    <script>
+        // 1. Dynamic Year
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-<div class="card">
-<h3>Premium Experience</h3>
-<p>
-Smooth animations, responsive gameplay and modern dark UI designed for the best mobile gaming experience.
-</p>
-</div>
+        // 2. Generate Background Particles
+        const particleContainer = document.getElementById('particles');
+        const particleTypes = ['p-x', 'p-o'];
+        const chars = ['X', 'O'];
+        for(let i=0; i<15; i++) {
+            let el = document.createElement('div');
+            let isX = Math.random() > 0.5;
+            el.className = `particle ${isX ? 'p-x' : 'p-o'}`;
+            el.textContent = isX ? 'X' : 'O';
+            
+            // Random properties
+            el.style.left = `${Math.random() * 100}vw`;
+            el.style.fontSize = `${Math.random() * 80 + 40}px`;
+            el.style.animationDuration = `${Math.random() * 20 + 15}s`;
+            el.style.animationDelay = `${Math.random() * 10}s`;
+            
+            // Depth blur
+            if(Math.random() > 0.5) el.style.filter = `blur(${Math.random() * 5 + 2}px)`;
+            
+            particleContainer.appendChild(el);
+        }
 
-<div class="card">
-<h3>Privacy First</h3>
-<p>
-No ads, no tracking, no accounts. Just pure offline gameplay focused on strategy and fun.
-</p>
-</div>
+        // 3. Scroll Reveal Animation (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Run once
+            });
+        }, revealOptions);
 
-</div>
+        revealElements.forEach(el => revealOnScroll.observe(el));
 
-</section>
+        // 4. 3D Tilt Effect on Cards (Vanilla JS)
+        const cards = document.querySelectorAll('.tilt-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -10; // Max 10 deg
+                const rotateY = ((x - centerX) / centerX) * 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+        });
 
-<section id="modes" class="modes">
-
-<div class="grid">
-
-<div class="mode">
-<h3>Infinity Mode</h3>
-<p>
-Only three moves stay on the board. Place a fourth move and your oldest piece explodes.
-</p>
-</div>
-
-<div class="mode">
-<h3>Blind Mode</h3>
-<p>
-Pieces disappear after a moment. You must remember the board and outsmart your opponent.
-</p>
-</div>
-
-<div class="mode">
-<h3>Blitz Mode</h3>
-<p>
-You have only three seconds per turn. Think fast or lose the match instantly.
-</p>
-</div>
-
-<div class="mode">
-<h3>Classic Mode</h3>
-<p>
-Play the traditional Tic Tac Toe experience enhanced with modern visuals and smooth gameplay.
-</p>
-</div>
-
-</div>
-
-</section>
-
-<section id="download" class="download-section">
-
-<h2>Download TicTacBoom</h2>
-
-<p style="color:#94a3b8;margin-top:15px">
-Available for Android devices. Completely free and offline.
-</p>
-
-<a class="download-btn" href="#">
-Download APK
-</a>
-
-</section>
-
-<footer>
-
-<div>
-<a href="privacy.html">Privacy</a>
-<a href="terms.html">Terms</a>
-<a href="contact.html">Contact</a>
-</div>
-
-<p style="margin-top:20px;color:#555">
-© 2026 MMN Codes – TicTacBoom
-</p>
-
-</footer>
-
+        // 5. Navbar Blur on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(3, 7, 18, 0.9)';
+                nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
+            } else {
+                nav.style.background = 'rgba(3, 7, 18, 0.7)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
