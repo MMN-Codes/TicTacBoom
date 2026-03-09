@@ -3,310 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - TicTacBoom</title>
-    <!-- Premium Font (Inter) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ================= SEO & META TAGS ================= -->
+    <title>Contact Us | TicTacBoom</title>
+    <meta name="description" content="Get in touch with MMN Codes, the creators of TicTacBoom. For support, feedback, or business inquiries, our comms channel is open.">
+    <meta name="keywords" content="TicTacBoom contact, MMN Codes support, game support, feedback">
+    <meta name="author" content="MMN Codes">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Contact - TicTacBoom">
+    <meta property="og:description" content="Open a comms link with the creators of TicTacBoom.">
+    <meta property="og:type" content="website">
+    
+    <!-- Google SEO Schema for Contact Page -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact TicTacBoom Support",
+      "description": "Contact MMN Codes for TicTacBoom support.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "MMN Codes",
+        "email": "all4you598@gmail.com"
+      }
+    }
+    </script>
+    <!-- =================================================== -->
+
+    <!-- Premium Fonts: Outfit (Headings) + Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
         /* === CSS VARIABLES === */
         :root {
-            --bg-main: #0a0c10;
-            --bg-card: #12151c;
-            --text-primary: #ffffff;
-            --text-secondary: #94a3b8;
-            --accent-blue: #3b7df8;
-            --accent-red: #f83b54;
-            --border-color: #1e2430;
-            --input-bg: rgba(255, 255, 255, 0.03);
+            --bg-base: #030712;       
+            --bg-card: rgba(17, 24, 39, 0.5); 
+            --text-main: #F9FAFB;
+            --text-muted: #9CA3AF;
+            --accent-blue: #3b7df8;   
+            --accent-blue-hover: #2563eb;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --glow-shadow: rgba(59, 125, 248, 0.2);
         }
 
         /* === RESET & BASE === */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        ::selection { background: var(--accent-blue); color: white; }
 
         body {
-            background-color: var(--bg-main);
-            color: var(--text-primary);
-            line-height: 1.6;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
-            position: relative; /* For background shapes */
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        /* === BACKGROUND ANIMATION (X & O) === */
-        .bg-shapes {
+        h1, h2, h3, .logo { font-family: 'Outfit', sans-serif; }
+
+        /* === MAGIC CURSOR GLOW === */
+        #glow-cursor {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Content ke peeche */
-            overflow: hidden;
-            pointer-events: none; /* Mouse clicks ignore karega */
+            top: 0; left: 0;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(59, 125, 248, 0.15) 0%, rgba(0,0,0,0) 60%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none; /* Clicks bypass this layer */
+            z-index: -1;
+            transition: opacity 0.3s;
         }
-
-        .shape {
-            position: absolute;
-            font-weight: 700;
-            opacity: 0; /* Shuru mein gayab */
-            animation: floatUp 15s linear infinite;
-        }
-
-        /* X Style */
-        .shape-x {
-            color: var(--accent-blue);
-            font-size: 80px;
-        }
-
-        /* O Style */
-        .shape-o {
-            color: var(--accent-red);
-            font-size: 100px;
-        }
-
-        /* Animation Keyframes */
-        @keyframes floatUp {
-            0% {
-                transform: translateY(110vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.08; /* Very subtle visibility */
-            }
-            90% {
-                opacity: 0.08;
-            }
-            100% {
-                transform: translateY(-10vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Placing Shapes Randomly */
-        .s1 { left: 10%; animation-duration: 12s; animation-delay: 0s; }
-        .s2 { left: 30%; animation-duration: 18s; animation-delay: 4s; font-size: 150px; }
-        .s3 { left: 70%; animation-duration: 15s; animation-delay: 2s; }
-        .s4 { left: 85%; animation-duration: 20s; animation-delay: 6s; font-size: 60px; }
-        .s5 { left: 50%; animation-duration: 25s; animation-delay: 8s; font-size: 120px; }
 
         /* === NAVBAR === */
         nav {
-            padding: 20px 5%;
-            background: rgba(10, 12, 16, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
+            position: fixed; top: 0; width: 100%; padding: 20px 8%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass); z-index: 1000;
         }
-
-        .logo {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-decoration: none;
-        }
-
-        .logo span { color: var(--accent-blue); }
-
+        
+        .logo { font-size: 24px; font-weight: 900; letter-spacing: -1px; background: linear-gradient(90deg, #fff, #9CA3AF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none;}
+        
         .back-btn {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            transition: 0.3s;
+            color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 600;
+            display: flex; align-items: center; gap: 8px; transition: 0.3s;
+            padding: 8px 16px; border-radius: 100px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass);
         }
+        .back-btn:hover { color: #fff; background: rgba(255,255,255,0.1); transform: translateX(-3px); box-shadow: 0 0 15px rgba(255,255,255,0.05);}
 
-        .back-btn:hover { color: var(--text-primary); }
-
-        /* === CONTACT CONTAINER === */
+        /* === MAIN LAYOUT (Split Screen) === */
         .container {
-            flex: 1; /* Pushes footer down */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 24px;
+            max-width: 1200px; margin: 120px auto 40px; padding: 0 24px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+            flex: 1; align-items: center;
         }
 
-        .contact-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 50px;
-            width: 100%;
-            max-width: 600px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            backdrop-filter: blur(10px); /* Glass effect on card */
+        /* Left Side: Info */
+        .contact-info h1 {
+            font-size: clamp(40px, 5vw, 64px); font-weight: 900; letter-spacing: -2px; line-height: 1.1; margin-bottom: 20px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #9CA3AF 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .contact-info p { color: var(--text-muted); font-size: 18px; margin-bottom: 40px; line-height: 1.7; }
+        
+        /* Premium Email Card */
+        .email-card {
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass);
+            padding: 24px; border-radius: 20px; display: flex; align-items: center; gap: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer;
+            text-decoration: none; display: inline-flex; width: 100%;
+        }
+        .email-card:hover { background: rgba(59, 125, 248, 0.1); border-color: var(--accent-blue); transform: translateY(-5px); box-shadow: 0 15px 30px var(--glow-shadow); }
+        .email-icon { width: 50px; height: 50px; background: rgba(59, 125, 248, 0.2); border-radius: 12px; display: flex; justify-content: center; align-items: center; color: var(--accent-blue); }
+        .email-text h3 { color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+        .email-text p { color: var(--accent-blue); font-size: 18px; font-weight: 600; margin: 0; }
+
+        /* Right Side: Form */
+        .form-card {
+            background-color: var(--bg-card); border: 1px solid var(--border-glass);
+            border-radius: 24px; padding: 40px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
+        .input-group { margin-bottom: 24px; position: relative; }
+        .input-group label { display: block; color: var(--text-muted); font-size: 13px; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .form-control {
+            width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--border-glass);
+            border-radius: 12px; padding: 16px 20px; color: #fff; font-family: 'Inter', sans-serif; font-size: 16px;
+            transition: all 0.3s; outline: none;
         }
+        .form-control:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 4px rgba(59, 125, 248, 0.15); background: rgba(0,0,0,0.5); }
+        textarea.form-control { min-height: 120px; resize: vertical; }
 
-        .header h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            color: var(--text-secondary);
-        }
-
-        /* === FORM STYLES === */
-        .form-group {
-            margin-bottom: 24px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .form-input, .form-textarea {
-            width: 100%;
-            background: var(--input-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px;
-            color: white;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--accent-blue);
-            background: rgba(59, 125, 248, 0.05);
-            box-shadow: 0 0 0 4px rgba(59, 125, 248, 0.1);
-        }
-
-        /* Button */
         .btn-submit {
-            width: 100%;
-            background: linear-gradient(135deg, var(--accent-blue), #2563eb);
-            color: white;
-            border: none;
-            padding: 18px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(59, 125, 248, 0.3);
+            width: 100%; background: var(--accent-blue); color: white;
+            padding: 18px; border-radius: 12px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 1px;
+            border: none; cursor: pointer; transition: all 0.3s;
+            display: flex; justify-content: center; align-items: center; gap: 10px;
         }
-
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 125, 248, 0.4);
-        }
-
-        /* Direct Email Link */
-        .direct-email {
-            text-align: center;
-            margin-top: 24px;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        .direct-email a {
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-weight: 600;
-        }
+        .btn-submit:hover { background: var(--accent-blue-hover); transform: translateY(-2px); box-shadow: 0 10px 25px var(--glow-shadow); }
 
         /* === FOOTER === */
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: var(--text-secondary);
-            font-size: 13px;
-            border-top: 1px solid var(--border-color);
-            background: var(--bg-main);
-        }
+        footer { text-align: center; padding: 30px 20px; color: #4B5563; font-size: 14px; border-top: 1px solid var(--border-glass); margin-top: auto; }
 
-        /* Mobile */
-        @media (max-width: 600px) {
-            .contact-card { padding: 30px 20px; }
-            .header h1 { font-size: 28px; }
+        /* === UTILITY (Scroll Reveal) === */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Mobile Adjustments */
+        @media (max-width: 900px) {
+            .container { grid-template-columns: 1fr; gap: 40px; margin-top: 100px; }
+            .contact-info { text-align: center; }
+            .email-card { justify-content: center; }
+            .form-card { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- === BACKGROUND ANIMATION === -->
-    <div class="bg-shapes">
-        <!-- Floating shapes (X and O) -->
-        <div class="shape shape-x s1">X</div>
-        <div class="shape shape-o s2">O</div>
-        <div class="shape shape-x s3">X</div>
-        <div class="shape shape-o s4">O</div>
-        <div class="shape shape-x s5">X</div>
-    </div>
+    <!-- The Magic Mouse Glow -->
+    <div id="glow-cursor"></div>
 
     <!-- Navigation -->
     <nav>
-        <a href="index.html" class="logo">TicTac<span>Boom</span></a>
-        <a href="index.html" class="back-btn">← Home</a>
+        <a href="index.html" class="logo">TicTacBoom</a>
+        <a href="index.html" class="back-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            Home
+        </a>
     </nav>
 
     <!-- Main Content -->
     <div class="container">
-        <div class="contact-card">
-            <div class="header">
-                <h1>Get in Touch</h1>
-                <p>Have a question or feedback? We'd love to hear from you.</p>
-            </div>
-
-            <!-- Form starts -->
-            <!-- Note: Static forms need a backend. Using mailto as a fallback/demo -->
-            <form action="mailto:all4you598@gmail.com" method="post" enctype="text/plain">
-                
-                <div class="form-group">
-                    <label class="form-label">Name</label>
-                    <input type="text" name="name" class="form-input" placeholder="Your Name" required>
+        
+        <!-- Left Column: Info -->
+        <div class="contact-info reveal">
+            <h1>Initiate<br>Comms.</h1>
+            <p>Found a bug? Have a brilliant idea for a new game mode? Or just want to challenge the devs? Drop us a signal. We monitor our channels 24/7.</p>
+            
+            <a href="mailto:all4you598@gmail.com" class="email-card">
+                <div class="email-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="email" name="email" class="form-input" placeholder="hello@example.com" required>
+                <div class="email-text">
+                    <h3>Direct Signal</h3>
+                    <p>all4you598@gmail.com</p>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-label">Message</label>
-                    <textarea name="message" class="form-textarea" placeholder="Type your message here..." required></textarea>
-                </div>
-
-                <button type="submit" class="btn-submit">Send Message</button>
-
-            </form>
-            <!-- Form ends -->
-
-            <div class="direct-email">
-                Prefer email? <a href="mailto:all4you598@gmail.com">all4you598@gmail.com</a>
-            </div>
+            </a>
         </div>
+
+        <!-- Right Column: The Glass Form -->
+        <div class="form-card reveal">
+            <!-- Mailto form action -> sends data to email client -->
+            <form action="mailto:all4you598@gmail.com" method="POST" enctype="text/plain" id="contactForm">
+                
+                <div class="input-group">
+                    <label>Operator Name</label>
+                    <input type="text" name="Name" class="form-control" placeholder="John Doe" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Transmission Link (Email)</label>
+                    <input type="email" name="Email" class="form-control" placeholder="john@example.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label>The Message</label>
+                    <textarea name="Message" class="form-control" placeholder="Type your intel here..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    TRANSMIT SIGNAL
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                </button>
+            </form>
+        </div>
+
     </div>
 
     <!-- Footer -->
     <footer>
-        &copy; 2026 TicTacBoom Studio. All Rights Reserved.
+        &copy; <span id="year"></span> MMN Studio. All Rights Reserved.
     </footer>
 
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        // 1. Dynamic Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 2. Magic Cursor Glow Effect
+        const glow = document.getElementById('glow-cursor');
+        document.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+
+        // Hide glow when cursor leaves window
+        document.addEventListener('mouseleave', () => glow.style.opacity = '0');
+        document.addEventListener('mouseenter', () => glow.style.opacity = '1');
+
+        // 3. Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealOnScroll.observe(el));
+
+        // 4. Form Button Interactive Feedback
+        const form = document.getElementById('contactForm');
+        const btn = document.getElementById('submitBtn');
+        
+        form.addEventListener('submit', () => {
+            btn.innerHTML = 'TRANSMITTING...';
+            btn.style.background = '#10B981'; // Green color for success feel
+            btn.style.boxShadow = '0 10px 25px rgba(16, 185, 129, 0.4)';
+            setTimeout(() => {
+                btn.innerHTML = 'TRANSMIT SIGNAL <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>';
+                btn.style.background = 'var(--accent-blue)';
+                btn.style.boxShadow = 'none';
+            }, 3000);
+        });
+    </script>
 </body>
 </html>
