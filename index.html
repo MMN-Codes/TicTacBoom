@@ -1,377 +1,355 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TicTacBoom - The Strategy Game</title>
-    <!-- Premium Font (Inter) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        /* === CSS VARIABLES === */
-        :root {
-            --bg-main: #050505;       /* Pure Dark */
-            --bg-glass: rgba(20, 20, 25, 0.6);
-            --text-primary: #ffffff;
-            --text-secondary: #94a3b8;
-            --accent-blue: #3b7df8;   /* X Color */
-            --accent-red: #f83b54;    /* O Color */
-            --border-color: rgba(255, 255, 255, 0.1);
-        }
 
-        /* === RESET & BASE === */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            position: relative;
-        }
+<title>TicTacBoom – Modern Strategy Tic Tac Toe Game</title>
 
-        /* === BACKGROUND ANIMATION (The "Alive" Feel) === */
-        .bg-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none;
-        }
+<meta name="description" content="Play TicTacBoom – the ultimate evolution of Tic Tac Toe. Infinity mode, Blitz mode, Blind mode, smart AI, premium design, and zero ads.">
+<meta name="keywords" content="tic tac toe game, strategy game, tic tac boom, android puzzle game, offline tic tac toe">
+<meta name="author" content="MMN Codes">
 
-        .floating-shape {
-            position: absolute;
-            font-weight: 800;
-            opacity: 0;
-            animation: floatUp linear infinite;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.1)); /* Subtle Glow */
-        }
+<meta property="og:title" content="TicTacBoom – Strategy Reimagined">
+<meta property="og:description" content="A premium evolution of Tic Tac Toe with Infinity mode, Blitz mode, Blind mode and smart AI.">
+<meta property="og:type" content="website">
 
-        /* Shapes Styling */
-        .shape-x { color: var(--accent-blue); }
-        .shape-o { color: var(--accent-red); }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-        @keyframes floatUp {
-            0% { transform: translateY(120vh) rotate(0deg) scale(0.8); opacity: 0; }
-            10% { opacity: 0.2; } /* Clearly Visible now */
-            90% { opacity: 0.2; }
-            100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0; }
-        }
+<style>
 
-        /* Positioning & Timing */
-        .s1 { left: 10%; font-size: 100px; animation-duration: 25s; animation-delay: 0s; }
-        .s2 { left: 85%; font-size: 150px; animation-duration: 30s; animation-delay: 5s; }
-        .s3 { left: 50%; font-size: 80px; animation-duration: 20s; animation-delay: 2s; filter: blur(4px); } /* Depth Effect */
-        .s4 { left: 20%; font-size: 60px; animation-duration: 18s; animation-delay: 10s; }
-        .s5 { left: 70%; font-size: 120px; animation-duration: 28s; animation-delay: 8s; filter: blur(2px); }
+:root{
+--bg:#050505;
+--card:#0f0f12;
+--accent:#3b7df8;
+--accent2:#f83b54;
+--text:#ffffff;
+--muted:#94a3b8;
+}
 
-        /* === NAVBAR === */
-        nav {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,sans-serif;
+scroll-behavior:smooth;
+}
 
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            background: linear-gradient(90deg, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+body{
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+}
 
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            margin-left: 30px;
-            font-size: 14px;
-            font-weight: 500;
-            transition: 0.3s;
-        }
+section{
+padding:100px 8%;
+}
 
-        .nav-links a:hover { color: var(--text-primary); }
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(5,5,5,0.85);
+backdrop-filter:blur(15px);
+border-bottom:1px solid rgba(255,255,255,0.05);
+z-index:999;
+}
 
-        /* === HERO SECTION === */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 120px 20px 60px;
-        }
+.logo{
+font-size:22px;
+font-weight:800;
+}
 
-        .badge {
-            background: rgba(59, 125, 248, 0.1);
-            color: var(--accent-blue);
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 600;
-            border: 1px solid rgba(59, 125, 248, 0.3);
-            margin-bottom: 24px;
-            display: inline-block;
-        }
+.nav a{
+margin-left:25px;
+text-decoration:none;
+color:var(--muted);
+font-size:14px;
+}
 
-        .hero h1 {
-            font-size: clamp(40px, 6vw, 72px);
-            line-height: 1.1;
-            font-weight: 800;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+.nav a:hover{
+color:white;
+}
 
-        .hero p {
-            font-size: 18px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding-top:120px;
+}
 
-        /* Premium Download Button */
-        .btn-download {
-            background: var(--accent-blue);
-            color: white;
-            padding: 18px 48px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 16px;
-            text-decoration: none;
-            transition: 0.3s;
-            box-shadow: 0 0 20px rgba(59, 125, 248, 0.4);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
+.hero h1{
+font-size:clamp(40px,7vw,80px);
+font-weight:800;
+background:linear-gradient(90deg,#fff,#94a3b8);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
 
-        .btn-download:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 0 40px rgba(59, 125, 248, 0.6);
-            background: #2563eb;
-        }
+.hero p{
+margin-top:20px;
+max-width:650px;
+color:var(--muted);
+font-size:18px;
+line-height:1.6;
+}
 
-        /* CSS Phone Mockup (Abstract) */
-        .phone-mockup {
-            width: 280px;
-            height: 500px;
-            background: #000;
-            border: 8px solid #333;
-            border-radius: 40px;
-            margin-top: 60px;
-            position: relative;
-            box-shadow: 0 0 60px rgba(59, 125, 248, 0.15);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            animation: floatPhone 6s ease-in-out infinite;
-        }
+.download-btn{
+margin-top:40px;
+background:var(--accent);
+padding:18px 45px;
+border-radius:50px;
+color:white;
+text-decoration:none;
+font-weight:600;
+display:inline-block;
+box-shadow:0 0 25px rgba(59,125,248,0.4);
+transition:0.3s;
+}
 
-        /* Fake Screen Content */
-        .screen {
-            width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #1a1d24, #000);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-        
-        .screen::before {
-            content: "TicTacBoom";
-            font-weight: 800;
-            font-size: 24px;
-            color: #fff;
-            margin-bottom: 20px;
-        }
+.download-btn:hover{
+transform:translateY(-4px);
+box-shadow:0 0 45px rgba(59,125,248,0.6);
+}
 
-        /* Grid inside phone */
-        .grid-preview {
-            display: grid;
-            grid-template-columns: repeat(3, 50px);
-            gap: 5px;
-        }
-        .cell {
-            width: 50px; height: 50px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            display: flex; justify-content: center; align-items: center;
-            font-weight: bold; font-size: 24px;
-        }
-        .cell.x { color: var(--accent-blue); border: 1px solid var(--accent-blue); box-shadow: 0 0 10px var(--accent-blue); }
-        .cell.o { color: var(--accent-red); border: 1px solid var(--accent-red); box-shadow: 0 0 10px var(--accent-red);}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
 
-        @keyframes floatPhone {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
+.card{
+background:var(--card);
+padding:40px;
+border-radius:20px;
+border:1px solid rgba(255,255,255,0.05);
+transition:0.35s;
+}
 
-        /* === FEATURES SECTION === */
-        .features {
-            padding: 100px 8%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+.card:hover{
+transform:translateY(-10px);
+border-color:var(--accent);
+}
 
-        .feature-card {
-            background: var(--bg-glass);
-            border: 1px solid var(--border-color);
-            padding: 40px;
-            border-radius: 24px;
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
+.card h3{
+margin-bottom:10px;
+}
 
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-blue);
-            background: rgba(59, 125, 248, 0.05);
-        }
+.card p{
+color:var(--muted);
+font-size:15px;
+line-height:1.6;
+}
 
-        .icon {
-            font-size: 32px;
-            margin-bottom: 20px;
-            display: inline-block;
-            padding: 15px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 16px;
-        }
+.modes{
+background:#020202;
+}
 
-        .feature-card h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #fff;
-        }
+.mode{
+background:linear-gradient(145deg,#0f0f12,#050505);
+padding:35px;
+border-radius:18px;
+border:1px solid rgba(255,255,255,0.06);
+transition:0.4s;
+}
 
-        .feature-card p {
-            font-size: 15px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
+.mode:hover{
+transform:scale(1.05);
+border-color:var(--accent);
+}
 
-        /* === FOOTER === */
-        footer {
-            padding: 60px 20px;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            background: #020202;
-        }
+.mode h3{
+margin-bottom:10px;
+}
 
-        .footer-nav {
-            margin-bottom: 20px;
-        }
+.download-section{
+text-align:center;
+}
 
-        .footer-nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 14px;
-            transition: 0.3s;
-        }
+footer{
+padding:60px 20px;
+text-align:center;
+border-top:1px solid rgba(255,255,255,0.06);
+background:#020202;
+}
 
-        .footer-nav a:hover { color: var(--accent-blue); }
+footer a{
+color:var(--muted);
+margin:0 12px;
+text-decoration:none;
+font-size:14px;
+}
 
-        .copyright { color: #555; font-size: 13px; }
+footer a:hover{
+color:white;
+}
 
-        /* Mobile */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 42px; }
-            .nav-links { display: none; } /* Hide top links on mobile */
-            .bg-container .floating-shape { opacity: 0.15; } /* Slightly dimmer on mobile */
-        }
-    </style>
+.bg-shape{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+overflow:hidden;
+}
+
+.shape{
+position:absolute;
+font-size:120px;
+opacity:0.08;
+animation:float 25s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(110vh) rotate(0deg)}
+100%{transform:translateY(-20vh) rotate(360deg)}
+}
+
+.s1{left:10%}
+.s2{left:70%;animation-duration:30s}
+.s3{left:40%;animation-duration:22s}
+
+@media(max-width:768px){
+.nav{display:none}
+.hero h1{font-size:42px}
+}
+
+</style>
 </head>
+
 <body>
 
-    <!-- === FLOATING BACKGROUND (X & O) === -->
-    <div class="bg-container">
-        <div class="floating-shape shape-x s1">X</div>
-        <div class="floating-shape shape-o s2">O</div>
-        <div class="floating-shape shape-x s3">X</div>
-        <div class="floating-shape shape-o s4">O</div>
-        <div class="floating-shape shape-x s5">X</div>
-    </div>
+<div class="bg-shape">
+<div class="shape s1">X</div>
+<div class="shape s2">O</div>
+<div class="shape s3">X</div>
+</div>
 
-    <!-- NAVBAR -->
-    <nav>
-        <div class="logo">TicTacBoom</div>
-        <div class="nav-links">
-            <a href="#features">Features</a>
-            <a href="contact.html">Support</a>
-        </div>
-    </nav>
+<nav>
+<div class="logo">TicTacBoom</div>
+<div class="nav">
+<a href="#features">Features</a>
+<a href="#modes">Modes</a>
+<a href="#download">Download</a>
+</div>
+</nav>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="badge">v1.0.0 Stable Release</div>
-        <h1>Strategy <br> Reimagined.</h1>
-        <p>Experience the classic game with premium haptics, smart AI, and a stunning dark interface. No Ads. Just pure gameplay.</p>
-        
-        <!-- APK DOWNLOAD LINK (Update this later) -->
-        <a href="#" class="btn-download">
-            Download for Android
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-        </a>
+<section class="hero">
 
-        <!-- CSS-ONLY PHONE MOCKUP -->
-        <div class="phone-mockup">
-            <div class="screen">
-                <div class="grid-preview">
-                    <div class="cell x">X</div><div class="cell"></div><div class="cell o">O</div>
-                    <div class="cell"></div><div class="cell x">X</div><div class="cell"></div>
-                    <div class="cell o">O</div><div class="cell"></div><div class="cell x">X</div>
-                </div>
-            </div>
-        </div>
-    </section>
+<h1>Strategy Reimagined</h1>
 
-    <!-- FEATURES -->
-    <section id="features" class="features">
-        <div class="feature-card">
-            <span class="icon">🤖</span>
-            <h3>Adaptive AI</h3>
-            <p>Challenge an AI that adapts to your moves. From 'Easy' for beginners to 'Impossible' for masters.</p>
-        </div>
-        <div class="feature-card">
-            <span class="icon">⚡</span>
-            <h3>Haptic Feedback</h3>
-            <p>Feel the game. Integrated vibration physics make every move satisfying and impactful.</p>
-        </div>
-        <div class="feature-card">
-            <span class="icon">🔒</span>
-            <h3>Privacy First</h3>
-            <p>We respect your data. No tracking, no account required, and absolutely zero intrusive ads.</p>
-        </div>
-    </section>
+<p>
+TicTacBoom is a modern evolution of the classic Tic Tac Toe strategy game. 
+Experience fast gameplay, smart AI opponents, unique game modes and a premium ad-free interface.
+</p>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-nav">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
-            <a href="contact.html">Contact Us</a>
-        </div>
-        <p class="copyright">&copy; 2026 TicTacBoom Studio. Built for Gamers.</p>
-    </footer>
+<a class="download-btn" href="#">
+Download for Android
+</a>
+
+</section>
+
+<section id="features">
+
+<div class="grid">
+
+<div class="card">
+<h3>Smart Adaptive AI</h3>
+<p>
+Challenge an AI that adapts to your strategy. Play from beginner friendly difficulty all the way to impossible mode.
+</p>
+</div>
+
+<div class="card">
+<h3>Premium Experience</h3>
+<p>
+Smooth animations, responsive gameplay and modern dark UI designed for the best mobile gaming experience.
+</p>
+</div>
+
+<div class="card">
+<h3>Privacy First</h3>
+<p>
+No ads, no tracking, no accounts. Just pure offline gameplay focused on strategy and fun.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="modes" class="modes">
+
+<div class="grid">
+
+<div class="mode">
+<h3>Infinity Mode</h3>
+<p>
+Only three moves stay on the board. Place a fourth move and your oldest piece explodes.
+</p>
+</div>
+
+<div class="mode">
+<h3>Blind Mode</h3>
+<p>
+Pieces disappear after a moment. You must remember the board and outsmart your opponent.
+</p>
+</div>
+
+<div class="mode">
+<h3>Blitz Mode</h3>
+<p>
+You have only three seconds per turn. Think fast or lose the match instantly.
+</p>
+</div>
+
+<div class="mode">
+<h3>Classic Mode</h3>
+<p>
+Play the traditional Tic Tac Toe experience enhanced with modern visuals and smooth gameplay.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="download" class="download-section">
+
+<h2>Download TicTacBoom</h2>
+
+<p style="color:#94a3b8;margin-top:15px">
+Available for Android devices. Completely free and offline.
+</p>
+
+<a class="download-btn" href="#">
+Download APK
+</a>
+
+</section>
+
+<footer>
+
+<div>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+<a href="contact.html">Contact</a>
+</div>
+
+<p style="margin-top:20px;color:#555">
+© 2026 MMN Codes – TicTacBoom
+</p>
+
+</footer>
 
 </body>
 </html>
