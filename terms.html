@@ -3,287 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service - TicTacBoom</title>
-    <!-- Premium Font (Inter) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ================= SEO & META TAGS ================= -->
+    <title>Terms of Service | TicTacBoom</title>
+    <meta name="description" content="Read the Terms of Service for TicTacBoom. Guidelines, licensing, and legal agreements for the ultimate strategy game.">
+    <meta name="keywords" content="TicTacBoom terms of service, game terms, legal agreement, eula">
+    <meta name="author" content="MMN Codes">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Terms of Service - TicTacBoom">
+    <meta property="og:description" content="Guidelines and legal agreements for the TicTacBoom mobile game.">
+    <meta property="og:type" content="website">
+    
+    <!-- Google SEO Schema for Legal Pages -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Terms of Service - TicTacBoom",
+      "description": "Terms of Service and End User License Agreement for TicTacBoom.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "MMN Codes"
+      }
+    }
+    </script>
+    <!-- =================================================== -->
+
+    <!-- Premium Fonts: Outfit (Headings) + Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
         /* === CSS VARIABLES === */
         :root {
-            --bg-main: #0a0c10;       /* Deep elegant dark */
-            --bg-card: #12151c;       /* Slightly lighter for content */
-            --text-primary: #ffffff;
-            --text-secondary: #94a3b8; /* Soft slate grey for reading */
-            --accent-blue: #3b7df8;   /* Player X color */
-            --accent-red: #f83b54;    /* Player O color */
-            --border-color: #1e2430;
+            --bg-base: #030712;       
+            --bg-card: rgba(17, 24, 39, 0.7); 
+            --text-main: #F9FAFB;
+            --text-muted: #9CA3AF;
+            --accent-blue: #3b7df8;   
+            --accent-red: #f83b54;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --glow-shadow: rgba(59, 125, 248, 0.3);
         }
+
+        /* === CUSTOM SCROLLBAR (Premium Touch) === */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-blue); }
 
         /* === RESET & BASE === */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        ::selection { background: var(--accent-red); color: white; }
 
         body {
-            background-color: var(--bg-main);
-            color: var(--text-primary);
-            line-height: 1.8;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        /* === THE CYBER GRID BACKGROUND (Tactical Vibe) === */
+        .cyber-grid {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle at center, black 20%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at center, black 20%, transparent 80%);
+            pointer-events: none;
+        }
+
+        h1, h2, h3, .logo { font-family: 'Outfit', sans-serif; }
+
+        /* === READING PROGRESS BAR === */
+        #progress-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 3px;
+            background: transparent; z-index: 2000;
+        }
+        #progress-bar {
+            height: 100%; width: 0%; background: var(--accent-blue);
+            box-shadow: 0 0 10px var(--accent-blue); transition: width 0.1s;
         }
 
         /* === NAVBAR === */
         nav {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            padding: 20px 5%;
-            background: rgba(10, 12, 16, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
+            position: fixed; top: 0; width: 100%; padding: 20px 8%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass); z-index: 1000;
         }
-
-        .logo {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .logo span {
-            color: var(--accent-blue);
-        }
-
+        
+        .logo { font-size: 24px; font-weight: 900; letter-spacing: -1px; background: linear-gradient(90deg, #fff, #9CA3AF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none;}
+        
         .back-btn {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 600;
+            display: flex; align-items: center; gap: 8px; transition: 0.3s;
+            padding: 8px 16px; border-radius: 100px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass);
         }
-
-        .back-btn:hover {
-            color: var(--text-primary);
-        }
+        .back-btn:hover { color: #fff; background: rgba(255,255,255,0.1); transform: translateX(-3px); box-shadow: 0 0 15px rgba(255,255,255,0.1);}
 
         /* === MAIN CONTENT CONTAINER === */
-        .container {
-            max-width: 800px;
-            margin: 60px auto;
-            padding: 0 24px;
-            animation: fadeIn 0.8s ease-out forwards;
+        .container { max-width: 850px; margin: 120px auto 60px; padding: 0 24px; }
+
+        /* === PARALLAX HEADER (X & O) === */
+        .page-header { text-align: center; margin-bottom: 50px; position: relative; }
+        
+        .header-assets {
+            display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 20px;
+            perspective: 1000px;
+        }
+        
+        .parallax-asset {
+            font-size: 48px; font-weight: 900; font-family: 'Outfit'; line-height: 1;
+            transition: transform 0.1s ease-out; display: inline-block;
+        }
+        
+        .asset-x { 
+            color: var(--accent-blue); 
+            text-shadow: 0 0 20px rgba(59, 125, 248, 0.6); 
+            animation: floatSlow 4s ease-in-out infinite alternate; 
+        }
+        
+        .asset-o { 
+            color: var(--accent-red); 
+            text-shadow: 0 0 20px rgba(248, 59, 84, 0.6); 
+            animation: floatSlow 5s ease-in-out infinite alternate-reverse; 
         }
 
-        /* Header Section */
-        .page-header {
-            margin-bottom: 50px;
-            text-align: center;
-        }
-
-        /* === PREMIUM X & O ANIMATION === */
-        .xo-animation {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 24px;
-            margin-bottom: 24px;
-        }
-
-        .anim-x {
-            font-size: 42px;
-            font-weight: 700;
-            color: var(--accent-blue);
-            line-height: 1;
-            /* Smooth continuous rotation */
-            animation: spinX 10s linear infinite;
-            text-shadow: 0 0 15px rgba(59, 125, 248, 0.3);
-        }
-
-        .anim-o {
-            font-size: 42px;
-            font-weight: 700;
-            color: var(--accent-red);
-            line-height: 1;
-            /* Smooth scaling/breathing effect */
-            animation: pulseO 3s ease-in-out infinite;
-            text-shadow: 0 0 15px rgba(248, 59, 84, 0.3);
-        }
-
-        @keyframes spinX {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes pulseO {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.15); opacity: 1; }
+        @keyframes floatSlow {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-15px) rotate(10deg); }
         }
 
         .page-header h1 {
-            font-size: clamp(32px, 5vw, 48px);
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 12px;
+            font-size: clamp(36px, 6vw, 56px); font-weight: 900; letter-spacing: -1px; margin-bottom: 12px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #9CA3AF 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
+        .page-header p { color: var(--accent-red); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
 
-        .page-header p {
-            color: var(--text-secondary);
-            font-size: 15px;
-        }
-
-        /* Content Card */
+        /* Content Card (Glassmorphism) */
         .content-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 40px 48px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background-color: var(--bg-card); border: 1px solid var(--border-glass);
+            border-radius: 24px; padding: 50px 60px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
         }
 
         /* Typography inside Content */
         h2 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-top: 40px;
-            margin-bottom: 16px;
-            color: var(--text-primary);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
+            font-size: 22px; font-weight: 700; color: #fff; margin-top: 45px; margin-bottom: 16px;
+            display: flex; align-items: center; gap: 12px; transition: color 0.3s;
         }
+        h2::before {
+            content: ''; display: inline-block; width: 8px; height: 24px;
+            background: var(--accent-red); border-radius: 4px;
+            box-shadow: 0 0 10px rgba(248, 59, 84, 0.4);
+        }
+        .content-card:hover h2::before { animation: pulseGlow 2s infinite; }
+        
+        @keyframes pulseGlow { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-        h2:first-child {
-            margin-top: 0;
-        }
+        h2:first-child { margin-top: 0; }
 
-        p {
-            color: var(--text-secondary);
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
+        p { color: var(--text-muted); font-size: 16px; margin-bottom: 24px; font-weight: 400; }
+        strong { color: #E5E7EB; font-weight: 600; }
 
-        ul {
-            margin-left: 20px;
-            margin-bottom: 20px;
-            color: var(--text-secondary);
-        }
+        ul { margin-left: 24px; margin-bottom: 24px; color: var(--text-muted); }
+        li { margin-bottom: 10px; padding-left: 8px; }
+        li::marker { color: var(--accent-red); font-size: 1.2em; } /* Custom Red bullets for Terms */
 
-        li {
-            margin-bottom: 8px;
-        }
-
-        a {
-            color: var(--accent-blue);
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        a:hover {
-            opacity: 0.8;
-            text-decoration: underline;
-        }
+        a { color: var(--accent-red); text-decoration: none; font-weight: 500; transition: all 0.3s; border-bottom: 1px dashed rgba(248, 59, 84, 0.3); padding-bottom: 2px;}
+        a:hover { color: #fff; text-shadow: 0 0 10px rgba(248, 59, 84, 0.5); border-color: transparent;}
 
         /* === FOOTER === */
         footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-secondary);
-            font-size: 14px;
-            border-top: 1px solid var(--border-color);
-            margin-top: 60px;
+            text-align: center; padding: 40px 20px; color: #4B5563; font-size: 14px;
+            border-top: 1px solid var(--border-glass); margin-top: 40px;
         }
 
-        /* === ANIMATIONS === */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        /* === UTILITY (Scroll Reveal) === */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* Mobile Adjustments */
-        @media (max-width: 600px) {
-            .content-card {
-                padding: 30px 24px;
-            }
+        @media (max-width: 768px) {
+            .content-card { padding: 40px 24px; border-radius: 20px; }
+            h2 { font-size: 20px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Tactical Grid Background -->
+    <div class="cyber-grid"></div>
+
+    <!-- Reading Progress Bar -->
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
     <!-- Navigation -->
     <nav>
-        <a href="index.html" class="logo">TicTac<span>Boom</span></a>
+        <a href="index.html" class="logo">TicTacBoom</a>
         <a href="index.html" class="back-btn">
-            ← Back to Home
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            Home
         </a>
     </nav>
 
     <!-- Main Content -->
     <div class="container">
-        <div class="page-header">
-            
-            <!-- Animated X and O Header -->
-            <div class="xo-animation">
-                <div class="anim-x">X</div>
-                <div class="anim-o">O</div>
+        <div class="page-header reveal">
+            <!-- Interactive X & O -->
+            <div class="header-assets" id="parallax-area">
+                <span class="parallax-asset asset-x" data-speed="-3">X</span>
+                <span class="parallax-asset asset-o" data-speed="3">O</span>
             </div>
 
             <h1>Terms of Service</h1>
-            <p>Effective Date: February 22, 2026</p>
+            <p>Effective Date: March 2026</p>
         </div>
 
-        <div class="content-card">
+        <div class="content-card reveal">
             <h2>1. Agreement to Terms</h2>
-            <p>By downloading, installing, or using the <strong>TicTacBoom</strong> mobile application ("App"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the App.</p>
+            <p>By downloading, installing, or using the <strong>TicTacBoom</strong> mobile application ("App"), you agree to be bound by these Terms of Service. If you do not agree to all of these terms, please uninstall and discontinue use of the App immediately.</p>
 
             <h2>2. License to Use</h2>
-            <p>TicTacBoom grants you a personal, non-exclusive, non-transferable, and revocable license to use the App for your personal, non-commercial entertainment purposes. You may not:</p>
+            <p>TicTacBoom grants you a personal, worldwide, royalty-free, non-assignable, and non-exclusive license to use the software provided to you. You may not:</p>
             <ul>
-                <li>Modify, reverse engineer, or decompile the App.</li>
-                <li>Distribute, sell, or lease the App to any third party.</li>
-                <li>Use the App in any unlawful manner.</li>
+                <li>Modify, reverse engineer, decompile, or extract the source code of the App.</li>
+                <li>Distribute, sell, or lease any part of the App to third parties.</li>
+                <li>Use the App in any manner that could damage, disable, or impair our services.</li>
             </ul>
 
-            <h2>3. Updates and Modifications</h2>
-            <p>We are constantly improving TicTacBoom. We may update the App to add new features, fix bugs, or improve performance. We reserve the right to modify or discontinue the App (or any part of it) at any time without notice. Updates may be provided directly via an in-app prompt.</p>
+            <h2>3. Game Modes & Fair Play</h2>
+            <p>Our unique features, including <strong>Infinity Mode, Blind Mode, and Blitz Mode</strong>, are designed for entertainment and cognitive training. By utilizing local multiplayer or AI modes, you agree to engage in fair gameplay. Any manipulation of device memory or time settings to alter Player Stats or Ranks is strictly prohibited.</p>
 
             <h2>4. Intellectual Property</h2>
-            <p>All content within TicTacBoom, including but not limited to designs, logos, graphics, sounds, and source code, are the intellectual property of TicTacBoom Studio. You may not use our intellectual property without our prior written consent.</p>
+            <p>All visual designs, haptic algorithms, particle systems, sounds, and source code within TicTacBoom are the exclusive intellectual property of <strong>MMN Studio</strong>. Our unique game mechanics (e.g., exploding 4th moves) are original concepts protected under applicable copyright laws.</p>
 
-            <h2>5. Disclaimer of Warranties</h2>
-            <p>The App is provided on an <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong> basis. We make no warranties, expressed or implied, regarding the App's reliability, accuracy, or compatibility with your device. TicTacBoom does not guarantee that the App will be free of errors or uninterrupted.</p>
+            <h2>5. Updates and Modifications</h2>
+            <p>We are constantly evolving the strategy experience. We reserve the right to push game updates, modify features, or introduce new modes at any time without prior notice. These updates are deployed to ensure the highest quality of gameplay and security.</p>
 
-            <h2>6. Limitation of Liability</h2>
-            <p>To the maximum extent permitted by law, TicTacBoom Studio shall not be liable for any indirect, incidental, or consequential damages (including device damage or data loss) arising out of your use or inability to use the App.</p>
+            <h2>6. Disclaimer of Warranties</h2>
+            <p>The App is provided on an <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong> basis. While we strive for a bug-free experience, MMN Studio makes no warranties regarding the flawless operation of the App on every specific Android device configuration.</p>
 
-            <h2>7. Governing Law</h2>
-            <p>These terms shall be governed and construed in accordance with the laws of India, without regard to its conflict of law provisions.</p>
+            <h2>7. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by law, MMN Studio shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of data resulting from your use of the App.</p>
 
             <h2>8. Contact Information</h2>
-            <p>If you have any questions about these Terms, please contact us at: <br>
+            <p>If you have any questions, disputes, or require support regarding these Terms, open a comms link with us at: <br>
             <a href="mailto:all4you598@gmail.com">all4you598@gmail.com</a></p>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        &copy; 2026 TicTacBoom Studio. All Rights Reserved.
+        &copy; <span id="year"></span> MMN Studio. All Rights Reserved.
     </footer>
 
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        // 1. Dynamic Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 2. Reading Progress Bar Logic
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+
+        // 3. Interactive Parallax Header (X & O React to Mouse)
+        document.addEventListener('mousemove', function(e) {
+            const assets = document.querySelectorAll('.parallax-asset');
+            const x = (window.innerWidth - e.pageX * 2) / 100;
+            const y = (window.innerHeight - e.pageY * 2) / 100;
+
+            assets.forEach(asset => {
+                const speed = asset.getAttribute('data-speed');
+                asset.style.transform = `translateX(${x * speed}px) translateY(${y * speed}px)`;
+            });
+        });
+
+        // 4. Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealOnScroll.observe(el));
+    </script>
 </body>
 </html>
